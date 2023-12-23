@@ -24,17 +24,13 @@ const io = socketio(server, {
 });
 
 
-var Parse = require('parse/node');
-Parse.initialize("IjupvZxGGRNMxH1pVZp7SghJ2CzGpBX83ieXbVEV", "ojWho5cYav5LLa32xpxaZqtk2gJrPfj2AgDG4QfO");
-Parse.serverURL = 'https://parseapi.back4app.com/'
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://fe-d1zd.onrender.com/');
+    res.header('Access-Control-Allow-Origin', 'https://fe-d1zd.onrender.com');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-
 // Set preflight
 app.options("*", (req, res) => {
     console.log("preflight");
