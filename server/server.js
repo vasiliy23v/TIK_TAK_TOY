@@ -9,24 +9,21 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 
-const PORT = process.env.PORT || 4000
-const app = express();
+const PORT = process.env.PORT || 'be-6jxq.onrender.com' || 4000
 
-const allowedOrigin = process.env.CORS_ORIGIN || 'be-6jxq.onrender.com';
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
 
-app.use(cors({
-    origin: allowedOrigin,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-}));
 
-const server = http.createServer(app);
-const io = socketio(server, {
-    cors: {
-        origins: "*:*",
-        methods: ["GET", "POST"]
+app.use(cors(
+    {
+        origins: PORT,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
     }
-});
+))
+
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
 const rooms = new Map()
