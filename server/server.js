@@ -9,30 +9,20 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 
-// const PORT = process.env.PORT || 4000
-const PORT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo' || 4000
-const app = express();
+const PORT = process.env.PORT || 'be-6jxq.onrender.com' || 4000
 
-app.use(cors({
-    origin: `${PORT}`,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-}));
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
 
-const server = http.createServer(app);
 
-const io = socketio(server, {
-    cors: {
-        origin: `${PORT}`,
-        methods: ["GET", "POST"]
+app.use(cors(
+    {
+        origins: PORT,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
     }
-});
-
-app.use(cors({
-    origin: `${PORT}`,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-}));
+))
 
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
