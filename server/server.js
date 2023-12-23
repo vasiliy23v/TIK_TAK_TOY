@@ -18,7 +18,15 @@ const io = socketio(server, {
         origin: 'https://fe-d1zd.onrender.com',
         methods: ['GET', 'POST'],
         credentials: true,
-        transports: ['websocket'], // Allow WebSocket connections
+    },
+    allowRequest: (req, callback) => {
+        const origin = req.headers.origin;
+        // Check if the request origin is allowed
+        const allowedOrigins = ['https://fe-d1zd.onrender.com'];
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
     },
 });
 
