@@ -10,7 +10,7 @@ import PlayAgain from '../functional/PlayAgain'
 import io from 'socket.io-client'
 import qs from 'qs'
 // const ENDPOINT = 'https://react-ttt-app.herokuapp.com/'
-const ENDPOINT = 'http://localhost:3000'
+const ENDPOINT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo'
 
 class Board extends Component {
   constructor(props) {
