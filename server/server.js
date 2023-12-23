@@ -13,38 +13,9 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 const server = http.createServer(app)
-// const io = socketio(server)
+const io = socketio(server)
 
-const io = socketio(server, {
-    cors: {
-        origin: 'http://localhost:3000', // Allow requests from this origin
-        methods: ['GET', 'POST'], // Allow only specified methods
-        credentials: true, // Allow credentials (cookies, headers, etc.)
-    },
-});
-
-
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://fe-d1zd.onrender.com');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
-// Set preflight
-app.options("*", (req, res) => {
-    console.log("preflight");
-    if (
-        req.headers.origin === "https://fe-d1zd.onrender.com/" &&
-        allowMethods.includes(req.headers["access-control-request-method"]) &&
-        allowHeaders.includes(req.headers["access-control-request-headers"])
-    ) {
-        console.log("pass");
-        return res.status(204).send();
-    } else {
-        console.log("fail");
-    }
-})
+app.use(cors())
 
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
