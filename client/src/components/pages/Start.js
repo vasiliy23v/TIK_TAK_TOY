@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom'
 
 import socketIOClient from 'socket.io-client'
 // const ENDPOINT = 'https://mptttserver-1-o6222468.deta.app'
-const ENDPOINT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo';
+const ENDPOINT = 'https://be-6jxq.onrender.com';
 
 class Start extends React.Component {
     constructor(props) {
