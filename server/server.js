@@ -22,7 +22,7 @@ const io = socketio(server, {
     allowRequest: (req, callback) => {
         const origin = req.headers.origin;
         // Check if the request origin is allowed
-        const allowedOrigins = ['https://fe-d1zd.onrender.com'];
+        const allowedOrigins = ['https://fe-d1zd.onrender.com', 'https://api.render.com', 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo'];
         if (allowedOrigins.includes(origin)) {
             return callback(null, true);
         }
