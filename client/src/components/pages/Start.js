@@ -9,6 +9,7 @@ import logo from './logo.png'
 import { Redirect } from 'react-router-dom'
 
 import socketIOClient from 'socket.io-client'
+// const ENDPOINT = 'https://mptttserver-1-o6222468.deta.app'
 const ENDPOINT = 'https://be-6jxq.onrender.com';
 
 class Start extends React.Component {
@@ -132,4 +133,3 @@ class Start extends React.Component {
 }
 
 export default Start;
-
