@@ -9,7 +9,7 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 
-const PORT = process.env.PORT || 'https://be-6jxq.onrender.com' || 4000
+const PORT = process.env.PORT || 4000
 
 const app = express()
 const server = http.createServer(app)
@@ -18,11 +18,16 @@ const io = socketio(server)
 
 app.use(cors(
     {
-        origins: PORT,
+        origins: "https://be-6jxq.onrender.com",
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     }
 ))
+
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', 'default-src \'self\' https://be-6jxq.onrender.com');
+    next();
+});
 
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
