@@ -17,6 +17,8 @@ const io = socketio(server, {
     cors: {
         origin: 'https://fe-d1zd.onrender.com',
         methods: ['GET', 'POST'],
+        credentials: true,
+        transports: ['websocket'], // Allow WebSocket connections
     },
 });
 
