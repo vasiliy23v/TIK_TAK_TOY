@@ -36,23 +36,6 @@ class Start extends React.Component {
             this.setState({ serverConfirmed: true })
         })
         this.socket.on('errorMessage', (message) => this.displayError(message))
-
-        try {
-            console.log("msg")
-            var socket = io("https://fe-d1zd.onrender.com", { transports: ['websocket'] });
-            socket.on('message', function (msg) {
-                console.log(msg)
-                el = document.getElementById('server-time');
-                el.innerHTML = 'Message ' + msg;
-            });
-            setInterval(() => {
-                count++
-                socket.emit('messaged', "count")
-                console.log(count)
-            }, 1000);
-        } catch (error) {
-            alert(error)
-        };
     }
 
 
