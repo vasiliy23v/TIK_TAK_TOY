@@ -13,10 +13,18 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 const server = http.createServer(app)
-const io = socketio(server)
+const io = socketio(server, {
+    cors: {
+        origin: 'https://fe-d1zd.onrender.com',
+        methods: ['GET', 'POST'],
+    },
+});
 
-app.use(cors())
-
+app.use(cors({
+    origin: 'https://fe-d1zd.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
 const rooms = new Map()
