@@ -12,7 +12,7 @@ const socketio = require('socket.io')
 const PORT = process.env.PORT || 4000
 const app = express();
 
-const allowedOrigin = process.env.CORS_ORIGIN || 'https://fe-d1zd.onrender.com' || 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo';
+const allowedOrigin = process.env.CORS_ORIGIN || 'be-6jxq.onrender.com';
 
 app.use(cors({
     origin: allowedOrigin,
