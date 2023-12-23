@@ -9,28 +9,27 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 
-const PORT = process.env.PORT || 4000
+// const PORT = process.env.PORT || 4000
+const PORT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo' || 4000
 const app = express();
+
 app.use(cors({
-    origin: 'https://fe-d1zd.onrender.com',
+    origin: `${PORT}`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
 
 const server = http.createServer(app);
+
 const io = socketio(server, {
     cors: {
-        origin: "https://fe-d1zd.onrender.com",
+        origin: `${PORT}`,
         methods: ["GET", "POST"]
     }
 });
 
-const cors = require('cors');
-
-const allowedOrigin = process.env.CORS_ORIGIN || 'https://fe-d1zd.onrender.com';
-
 app.use(cors({
-    origin: allowedOrigin,
+    origin: `${PORT}`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
