@@ -11,7 +11,9 @@ import io from 'socket.io-client'
 import qs from 'qs'
 // const ENDPOINT = 'https://react-ttt-app.herokuapp.com/'
 // const ENDPOINT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo'
+// const ENDPOINT = 'https://api.render.com/deploy/srv-cm3c1h21hbls73a59isg?key=3XPOVNN3COo'
 const ENDPOINT = 'https://be-6jxq.onrender.com'
+// const ENDPOINT = 'https://fe-d1zd.onrender.com' 
 
 class Board extends Component {
   constructor(props) {

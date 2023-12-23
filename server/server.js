@@ -9,7 +9,8 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 
-const PORT = process.env.PORT || 4000
+// const PORT = process.env.PORT || 4000
+const PORT = 'https://fe-d1zd.onrender.com'
 
 const app = express()
 const server = http.createServer(app)
@@ -18,14 +19,14 @@ const io = socketio(server)
 
 app.use(cors(
     {
-        origins: "https://be-6jxq.onrender.com",
+        origins: `${PORT}`,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     }
 ))
 
 app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', 'default-src \'self\' https://be-6jxq.onrender.com');
+    res.setHeader(`Content-Security-Policy', 'default-src \'self\' ${PORT}`);
     next();
 });
 
