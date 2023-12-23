@@ -10,26 +10,20 @@ const http = require('http')
 const socketio = require('socket.io')
 
 const PORT = process.env.PORT || 4000
-
-const app = express()
-// const server = http.createServer(app)
-
-const server = express()
-    .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-    .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-const io = require("socket.io")(server, {
-    cors: {
-        origins: "*:*",
-        methods: ["GET", "POST"]
-    }
-});
-
+const app = express();
 app.use(cors({
     origin: 'https://fe-d1zd.onrender.com',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
+
+const server = http.createServer(app);
+const io = socketio(server, {
+    cors: {
+        origins: "*:*",
+        methods: ["GET", "POST"]
+    }
+});
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
 const rooms = new Map()
