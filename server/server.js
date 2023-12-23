@@ -29,11 +29,26 @@ Parse.initialize("IjupvZxGGRNMxH1pVZp7SghJ2CzGpBX83ieXbVEV", "ojWho5cYav5LLa32xp
 Parse.serverURL = 'https://parseapi.back4app.com/'
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://fe-d1zd.onrender.com');
+    res.header('Access-Control-Allow-Origin', 'https://fe-d1zd.onrender.com/');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
+// Set preflight
+app.options("*", (req, res) => {
+    console.log("preflight");
+    if (
+        req.headers.origin === "https://fe-d1zd.onrender.com/" &&
+        allowMethods.includes(req.headers["access-control-request-method"]) &&
+        allowHeaders.includes(req.headers["access-control-request-headers"])
+    ) {
+        console.log("pass");
+        return res.status(204).send();
+    } else {
+        console.log("fail");
+    }
+})
 
 //Store the room ids mapping to the room property object 
 //The room property object looks like this {roomid:str, players:Array(2)}
